@@ -1,0 +1,26 @@
+# Dependencies
+node_modules/
+
+# Environment secrets — NEVER commit .env
+.env
+
+# Build outputs
+dist/
+build/
+.next/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# OS metadata
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+
+# Vercel / Render
+.vercel/
