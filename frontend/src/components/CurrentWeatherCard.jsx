@@ -39,48 +39,45 @@ export default function CurrentWeatherCard({ data, loading }) {
 
   return (
     <article className="glass-card p-6 animate-fade-in" aria-label={`Current weather for ${name}`}>
-      {/* ── Header: City + Badge ───────────────────────────────────────── */}
-      <div className="flex items-start justify-between gap-4 mb-5">
-        <div>
-          <div className="flex items-center gap-2">
-            <span className="text-2xl">{getFlagEmoji(country)}</span>
-            <h2 className="text-2xl sm:text-3xl font-bold text-white text-shadow-lg leading-tight">
-              {name}
-            </h2>
-          </div>
-          {country && (
-            <p className="text-white/60 text-sm mt-0.5">{country}</p>
-          )}
+      {/* ── Main Info ──────────────────────────────────────────────────── */}
+      <div className="flex flex-col mb-8 relative">
+        {/* Optional Condition Badge positioned absolutely on desktop, or right-aligned */}
+        <div className="flex items-center justify-between mt-2 mb-8">
+          <span className="text-xs font-semibold px-3 py-1 rounded-full bg-slate-100 border border-slate-200 text-slate-700 dark:bg-white/15 dark:border-white/20 dark:text-white/90 capitalize shadow-sm">
+            {description}
+          </span>
         </div>
 
-        {/* Condition badge */}
-        <span className="flex-shrink-0 text-xs font-semibold px-3 py-1 rounded-full bg-white/15 border border-white/20 text-white/90 capitalize">
-          {main}
-        </span>
-      </div>
-
-      {/* ── Temp + Icon ────────────────────────────────────────────────── */}
-      <div className="flex items-center justify-between mb-6">
-        <div>
-          <div className="flex items-end gap-1">
-            <span className="text-7xl sm:text-8xl font-black text-white text-shadow-lg leading-none">
+        {/* Massive temperature display + Icon side-by-side */}
+        <div className="flex items-center gap-6 mb-8 mt-4">
+          <WeatherIcon iconCode={icon} size="xl" className="w-32 h-32 object-contain drop-shadow-2xl animate-fade-in" />
+          <div className="flex items-start">
+            <span className="text-7xl sm:text-8xl font-black text-slate-900 dark:text-white dark:text-shadow-lg leading-none tracking-tighter">
               {convertTemp(temp)}
             </span>
-            <span className="text-3xl font-light text-white/70 mb-3">{unitSymbol}</span>
+            <span className="text-3xl font-light text-slate-500 dark:text-white/70 mt-1 ml-1">{unitSymbol}</span>
           </div>
-          <p className="text-white/80 text-base mt-1 capitalize text-shadow">
-            {capitalize(description)}
+        </div>
+
+        {/* Location & Details */}
+        <div className="flex flex-col">
+          <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white dark:text-shadow leading-tight flex items-center gap-2">
+            {name}
+            {country && (
+              <span className="text-xl leading-none">{getFlagEmoji(country)}</span>
+            )}
+          </h2>
+          <p className="text-slate-700 dark:text-white/90 text-lg mt-1.5 capitalize dark:text-shadow font-medium">
+            {main}
           </p>
-          <p className="text-white/55 text-sm mt-0.5">
+          <p className="text-slate-500 dark:text-white/60 text-sm mt-0.5">
             Feels like {convertTemp(feels_like)}{unitSymbol}
           </p>
         </div>
-
-        <WeatherIcon iconCode={icon} size="xl" className="flex-shrink-0 -mr-2" />
       </div>
 
       {/* ── Stats Grid ─────────────────────────────────────────────────── */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-4 border-t border-white/10">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-4 border-t border-slate-200 dark:border-white/10">
         <StatItem
           icon="💧"
           label="Humidity"
@@ -104,13 +101,17 @@ export default function CurrentWeatherCard({ data, loading }) {
       </div>
 
       {/* ── Sunrise / Sunset + Last Updated ────────────────────────────── */}
-      <div className="flex items-center justify-between mt-4 pt-3 border-t border-white/10 text-xs text-white/40">
+      <div className="flex items-center justify-between mt-4 pt-3 border-t border-slate-200 dark:border-white/10 text-xs text-slate-400 dark:text-white/40">
         <div className="flex items-center gap-4">
           {sunrise && (
-            <span title="Sunrise">🌅 {formatTime(sunrise)}</span>
+            <span title="Sunrise" className="flex items-center gap-1">
+              🌅 <span className="font-medium">Sunrise:</span> {formatTime(sunrise)}
+            </span>
           )}
           {sunset && (
-            <span title="Sunset">🌇 {formatTime(sunset)}</span>
+            <span title="Sunset" className="flex items-center gap-1">
+              🌇 <span className="font-medium">Sunset:</span> {formatTime(sunset)}
+            </span>
           )}
         </div>
         {dt && (
@@ -126,10 +127,10 @@ export default function CurrentWeatherCard({ data, loading }) {
 function StatItem({ icon, label, value }) {
   return (
     <div className="flex flex-col gap-0.5">
-      <span className="text-white/45 text-xs flex items-center gap-1">
+      <span className="text-slate-500 dark:text-white/45 text-xs flex items-center gap-1">
         <span>{icon}</span> {label}
       </span>
-      <span className="text-white font-semibold text-sm">{value}</span>
+      <span className="text-slate-900 dark:text-white font-semibold text-sm">{value}</span>
     </div>
   );
 }

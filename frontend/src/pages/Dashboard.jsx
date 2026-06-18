@@ -123,12 +123,19 @@ export default function Dashboard() {
         <header className="sticky top-0 z-40 px-4 sm:px-6 lg:px-8 py-4">
           <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
             {/* Logo / Title */}
-            <div className="flex items-center gap-2.5 flex-shrink-0">
-              <span className="text-2xl">🌤</span>
-              <div className="hidden sm:block">
-                <h1 className="text-white font-bold text-lg leading-tight text-shadow">
+            <div className="flex items-center gap-4 flex-shrink-0 group cursor-pointer">
+              <img 
+                src="/logo.png?v=3" 
+                alt="WeatherMind Logo" 
+                className="w-14 h-14 object-contain drop-shadow-xl transition-transform duration-300 group-hover:scale-105" 
+              />
+              <div className="hidden sm:flex flex-col justify-center">
+                <h1 className="text-slate-900 dark:text-white font-extrabold text-[32px] leading-none tracking-tight logo-glow">
                   WeatherMind
                 </h1>
+                <p className="text-slate-500 dark:text-slate-400 text-[11px] font-bold tracking-[0.2em] mt-1.5 uppercase flex items-center gap-1.5">
+                  LIVE FORECAST DASHBOARD <span className="text-sky-400 text-[10px] opacity-80">✦</span>
+                </p>
               </div>
             </div>
 
@@ -176,7 +183,7 @@ export default function Dashboard() {
               <div className="space-y-4">
                 {/* Empty state — nothing searched yet */}
                 {!weatherLoading && !current && !weatherError && (
-                  <EmptyState />
+                  <EmptyState onSearch={handleSearch} onLocate={handleLocate} geoLoading={geoLoading} />
                 )}
 
                 <CurrentWeatherCard data={current} loading={weatherLoading} />
@@ -199,7 +206,7 @@ export default function Dashboard() {
         </main>
 
         {/* ── Footer ────────────────────────────────────────────────────── */}
-        <footer className="text-center py-4 text-white/25 text-xs">
+        <footer className="text-center py-4 text-slate-400 dark:text-white/25 text-xs">
           <p>WeatherMind</p>
         </footer>
       </div>
@@ -237,14 +244,53 @@ function ThemeToggle({ isDark, onToggle }) {
 }
 
 // ─── Empty State ──────────────────────────────────────────────────────────────
-function EmptyState() {
+function EmptyState({ onSearch, onLocate, geoLoading }) {
+  const popularCities = ['London', 'New York', 'Tokyo', 'Bangalore'];
+
   return (
-    <div className="glass-card p-10 text-center animate-fade-in">
-      <div className="text-6xl mb-4 animate-pulse-slow">🌤</div>
-      <h2 className="text-white text-xl font-semibold mb-2">Check the weather anywhere</h2>
-      <p className="text-white/50 text-sm max-w-xs mx-auto leading-relaxed">
-        Search for a city above, use your current location, or click a recent search to get started.
-      </p>
+    <div className="glass-card p-8 sm:p-12 text-center animate-fade-in flex flex-col items-center">
+      <img
+        src="https://openweathermap.org/img/wn/02d@4x.png"
+        alt="Weather Illustration"
+        className="w-20 h-20 mb-6 drop-shadow-xl animate-float object-contain"
+      />
+      <h2 className="text-slate-900 dark:text-white text-2xl font-bold mb-8 tracking-tight">Search for a city</h2>
+      
+      <div className="w-full max-w-sm space-y-8">
+        <div>
+          <p className="text-slate-600 dark:text-white/60 text-sm mb-4 font-medium">Popular Searches:</p>
+          <div className="flex flex-wrap justify-center gap-2.5">
+            {popularCities.map(city => (
+              <button
+                key={city}
+                onClick={() => onSearch(city)}
+                className="btn-glass text-sm"
+              >
+                {city}
+              </button>
+            ))}
+          </div>
+        </div>
+        
+        <div className="flex items-center justify-center gap-4 text-slate-400 dark:text-white/30 text-sm font-medium">
+          <span className="h-px bg-slate-200 dark:bg-white/10 w-full"></span>
+          <span>or</span>
+          <span className="h-px bg-slate-200 dark:bg-white/10 w-full"></span>
+        </div>
+        
+        <button
+          onClick={onLocate}
+          disabled={geoLoading}
+          className="btn-glass w-full justify-center py-3.5 hover:-translate-y-0.5 disabled:opacity-50 disabled:hover:translate-y-0"
+        >
+          {geoLoading ? (
+            <span className="w-5 h-5 border-2 border-slate-300 border-t-slate-600 dark:border-white/30 dark:border-t-white rounded-full animate-spin" />
+          ) : (
+            <span className="text-lg">📍</span>
+          )}
+          <span>Use My Location</span>
+        </button>
+      </div>
     </div>
   );
 }

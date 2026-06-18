@@ -5,7 +5,12 @@
  * Supports Neon serverless Postgres (SSL required).
  */
 
-const { Pool } = require('pg');
+const { Pool, types } = require('pg');
+
+// Fix: Parse PostgreSQL 'timestamp without time zone' (1114) as UTC.
+// Because the database stores CURRENT_TIMESTAMP in UTC but lacks timezone info,
+// 'pg' defaults to parsing it as local time, causing a 5.5 hour offset in IST.
+types.setTypeParser(1114, (str) => new Date(str + 'Z'));
 
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,

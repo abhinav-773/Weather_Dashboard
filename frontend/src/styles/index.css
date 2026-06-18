@@ -40,55 +40,48 @@
 
 /* Default / Unknown */
 .weather-bg {
-  background: linear-gradient(145deg, #0f172a 0%, #1e293b 40%, #334155 100%);
+  @apply bg-slate-50;
   transition: background 0.8s ease;
   min-height: 100vh;
 }
 
-/* Clear / Sunny */
-.weather-bg-clear {
-  background: linear-gradient(145deg, #f97316 0%, #fb923c 30%, #fbbf24 65%, #fde68a 100%);
+html.dark .weather-bg {
+  /* from-slate-950 via-slate-900 to-blue-950 */
+  background: linear-gradient(145deg, #020617 0%, #0f172a 40%, #172554 100%);
 }
+
+/* Clear / Sunny */
+.weather-bg-clear { @apply bg-slate-50; }
 html.dark .weather-bg-clear {
   background: linear-gradient(145deg, #0c1445 0%, #1a1f6e 30%, #1d3461 65%, #1e40af 100%);
 }
 
 /* Clouds */
-.weather-bg-clouds {
-  background: linear-gradient(145deg, #475569 0%, #64748b 35%, #94a3b8 70%, #cbd5e1 100%);
-}
+.weather-bg-clouds { @apply bg-slate-50; }
 html.dark .weather-bg-clouds {
   background: linear-gradient(145deg, #0f172a 0%, #1e293b 35%, #334155 70%, #475569 100%);
 }
 
 /* Rain / Drizzle */
-.weather-bg-rain {
-  background: linear-gradient(145deg, #1e3a5f 0%, #1d4ed8 35%, #2563eb 70%, #3b82f6 100%);
-}
+.weather-bg-rain { @apply bg-slate-50; }
 html.dark .weather-bg-rain {
   background: linear-gradient(145deg, #020617 0%, #0c1445 35%, #172554 70%, #1e3a5f 100%);
 }
 
 /* Snow */
-.weather-bg-snow {
-  background: linear-gradient(145deg, #7dd3fc 0%, #bae6fd 35%, #e0f2fe 70%, #f0f9ff 100%);
-}
+.weather-bg-snow { @apply bg-slate-50; }
 html.dark .weather-bg-snow {
   background: linear-gradient(145deg, #0c2340 0%, #0e3157 35%, #1e4d7a 70%, #1d6096 100%);
 }
 
 /* Thunderstorm */
-.weather-bg-thunderstorm {
-  background: linear-gradient(145deg, #1e1b4b 0%, #312e81 30%, #4c1d95 65%, #5b21b6 100%);
-}
+.weather-bg-thunderstorm { @apply bg-slate-50; }
 html.dark .weather-bg-thunderstorm {
   background: linear-gradient(145deg, #0a0a0f 0%, #0f0e24 30%, #1a1040 65%, #1e1b4b 100%);
 }
 
 /* Mist / Haze / Fog */
-.weather-bg-mist {
-  background: linear-gradient(145deg, #4b5563 0%, #6b7280 35%, #9ca3af 70%, #d1d5db 100%);
-}
+.weather-bg-mist { @apply bg-slate-50; }
 html.dark .weather-bg-mist {
   background: linear-gradient(145deg, #111827 0%, #1f2937 35%, #374151 70%, #4b5563 100%);
 }
@@ -96,18 +89,13 @@ html.dark .weather-bg-mist {
 /* ─── Glass Card Component ──────────────────────────────────────────────────── */
 @layer components {
   .glass-card {
-    background: rgba(255, 255, 255, 0.22);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.28);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    @apply bg-white border border-slate-200 shadow-md;
     border-radius: 1rem;
     transition: all 0.2s ease;
   }
 
   .glass-card:hover {
-    background: rgba(255, 255, 255, 0.28);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+    @apply shadow-lg;
   }
 
   /* Dark theme glass cards — more opaque dark tint */
@@ -115,6 +103,8 @@ html.dark .weather-bg-mist {
     background: rgba(0, 0, 0, 0.28);
     border: 1px solid rgba(255, 255, 255, 0.10);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
   }
 
   html.dark .glass-card:hover {
@@ -123,18 +113,18 @@ html.dark .weather-bg-mist {
 
   /* Subtle glass — for history items, dropdown rows */
   .glass-subtle {
-    background: rgba(255, 255, 255, 0.12);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    @apply bg-white border border-slate-100 shadow-sm;
     transition: all 0.15s ease;
   }
 
   html.dark .glass-subtle {
     background: rgba(255, 255, 255, 0.06);
     border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: none;
   }
 
   .glass-subtle:hover {
-    background: rgba(255, 255, 255, 0.2);
+    @apply bg-slate-50;
   }
 
   html.dark .glass-subtle:hover {
@@ -143,12 +133,7 @@ html.dark .weather-bg-mist {
 
   /* ─── Skeleton Loader ──────────────────────────────────────────────── */
   .skeleton {
-    background: linear-gradient(
-      90deg,
-      rgba(255, 255, 255, 0.08) 25%,
-      rgba(255, 255, 255, 0.18) 50%,
-      rgba(255, 255, 255, 0.08) 75%
-    );
+    @apply bg-slate-200;
     background-size: 200% 100%;
     animation: skeleton-shimmer 1.6s ease-in-out infinite;
     border-radius: 0.5rem;
@@ -176,8 +161,7 @@ html.dark .weather-bg-mist {
 
   .toggle-slider {
     @apply absolute inset-0 rounded-full transition-all duration-300;
-    background: rgba(255, 255, 255, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    @apply bg-slate-200 border border-slate-300;
   }
 
   .toggle-slider::before {
@@ -196,13 +180,14 @@ html.dark .weather-bg-mist {
     transform: translateX(24px);
   }
 
+  html.dark .toggle-slider {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+
   /* ─── Search Input ─────────────────────────────────────────────────── */
   .search-input {
-    @apply w-full py-3.5 pl-12 pr-4 text-white placeholder-white/50;
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.25);
+    @apply w-full py-3.5 pl-12 pr-4 text-slate-900 placeholder-slate-400 bg-white border border-slate-200 shadow-sm;
     border-radius: 0.875rem;
     font-size: 1rem;
     outline: none;
@@ -210,71 +195,77 @@ html.dark .weather-bg-mist {
   }
 
   .search-input:focus {
-    background: rgba(255, 255, 255, 0.22);
-    border-color: rgba(255, 255, 255, 0.5);
-    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
+    @apply border-sky-400 shadow-md ring-2 ring-sky-100;
   }
 
   html.dark .search-input {
+    @apply text-white placeholder-white/50;
     background: rgba(0, 0, 0, 0.25);
     border-color: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: none;
+    ring: none;
   }
 
   html.dark .search-input:focus {
     background: rgba(0, 0, 0, 0.35);
     border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
   }
 
   /* ─── Suggestion Dropdown ──────────────────────────────────────────── */
   .suggestions-dropdown {
+    @apply bg-white border border-slate-200 shadow-xl;
+    border-radius: 0.875rem;
+    overflow: hidden;
+  }
+
+  html.dark .suggestions-dropdown {
     background: rgba(15, 23, 42, 0.92);
     backdrop-filter: blur(24px);
     -webkit-backdrop-filter: blur(24px);
     border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 0.875rem;
     box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
-    overflow: hidden;
-  }
-
-  html:not(.dark) .suggestions-dropdown {
-    background: rgba(30, 41, 59, 0.92);
   }
 
   /* ─── Button Variants ──────────────────────────────────────────────── */
   .btn-glass {
-    @apply flex items-center gap-2 px-4 py-2 rounded-xl font-medium text-white
-           transition-all duration-200 cursor-pointer select-none;
-    background: rgba(255, 255, 255, 0.15);
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    backdrop-filter: blur(8px);
+    @apply flex items-center gap-2 px-4 py-2 rounded-xl font-medium text-slate-700 bg-white border border-slate-200 shadow-sm transition-all duration-200 cursor-pointer select-none;
   }
 
   .btn-glass:hover {
-    background: rgba(255, 255, 255, 0.25);
-    transform: translateY(-1px);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    @apply bg-slate-50 text-slate-900 shadow-md transform -translate-y-px;
   }
 
   .btn-glass:active {
-    transform: translateY(0);
+    @apply transform-none;
   }
 
   html.dark .btn-glass {
+    @apply text-white shadow-none;
     background: rgba(255, 255, 255, 0.08);
     border-color: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(8px);
   }
 
   html.dark .btn-glass:hover {
     background: rgba(255, 255, 255, 0.15);
   }
+}
 
-  /* ─── Text utilities ───────────────────────────────────────────────── */
+@layer utilities {
   .text-shadow {
-    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
   }
-
   .text-shadow-lg {
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    text-shadow: 0 4px 8px rgba(0,0,0,0.4), 0 2px 4px rgba(0,0,0,0.2);
+  }
+  .logo-glow {
+    text-shadow: 0 0 15px rgba(56, 189, 248, 0.5), 0 0 30px rgba(56, 189, 248, 0.3);
+  }
+  html.dark .logo-glow {
+    text-shadow: 0 0 20px rgba(56, 189, 248, 0.8), 0 0 40px rgba(56, 189, 248, 0.5);
   }
 }
 

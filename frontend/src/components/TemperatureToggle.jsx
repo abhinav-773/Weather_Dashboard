@@ -17,11 +17,11 @@ export default function TemperatureToggle() {
       className="btn-glass text-sm font-semibold min-w-[72px] justify-center"
       title="Toggle temperature unit"
     >
-      <span className={`transition-all duration-200 ${unit === 'metric' ? 'text-white' : 'text-white/40'}`}>
+      <span className={`transition-all duration-200 ${unit === 'metric' ? 'text-slate-900 dark:text-white' : 'text-slate-400 dark:text-white/40'}`}>
         °C
       </span>
-      <span className="text-white/30 font-light">|</span>
-      <span className={`transition-all duration-200 ${unit === 'imperial' ? 'text-white' : 'text-white/40'}`}>
+      <span className="text-slate-300 dark:text-white/30 font-light">|</span>
+      <span className={`transition-all duration-200 ${unit === 'imperial' ? 'text-slate-900 dark:text-white' : 'text-slate-400 dark:text-white/40'}`}>
         °F
       </span>
     </button>

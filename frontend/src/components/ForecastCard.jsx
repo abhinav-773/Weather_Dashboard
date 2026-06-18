@@ -21,17 +21,17 @@ export default function ForecastCard({ day, isToday = false }) {
   return (
     <article
       className={`glass-card p-4 flex flex-col items-center gap-2 text-center transition-all duration-200
-        ${isToday ? 'ring-1 ring-white/30 scale-[1.02]' : ''}`}
+        ${isToday ? 'ring-2 ring-sky-400 dark:ring-1 dark:ring-white/30 scale-[1.02]' : ''}`}
       aria-label={`${day.dayLabel} forecast`}
     >
       {/* Day label */}
       <span className={`text-xs font-bold uppercase tracking-wider
-        ${isToday ? 'text-white' : 'text-white/70'}`}>
+        ${isToday ? 'text-sky-600 dark:text-white' : 'text-slate-500 dark:text-white/70'}`}>
         {day.dayLabel}
       </span>
 
       {/* Date */}
-      <span className="text-white/40 text-xs">
+      <span className="text-slate-400 dark:text-white/40 text-xs">
         {formatForecastDate(day.date)}
       </span>
 
@@ -39,16 +39,16 @@ export default function ForecastCard({ day, isToday = false }) {
       <WeatherIcon iconCode={day.icon} size="md" />
 
       {/* Condition */}
-      <span className="text-white/70 text-xs leading-tight capitalize min-h-[2rem] flex items-center">
+      <span className="text-slate-600 dark:text-white/70 text-xs leading-tight capitalize min-h-[2rem] flex items-center">
         {capitalize(day.description)}
       </span>
 
       {/* High / Low */}
       <div className="flex items-baseline gap-2 mt-auto">
-        <span className="text-white font-bold text-lg">
+        <span className="text-slate-900 dark:text-white font-bold text-lg">
           {convertTemp(day.high)}{unitSymbol}
         </span>
-        <span className="text-white/45 text-sm">
+        <span className="text-slate-500 dark:text-white/45 text-sm">
           {convertTemp(day.low)}{unitSymbol}
         </span>
       </div>
