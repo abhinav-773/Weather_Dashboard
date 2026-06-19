@@ -19,6 +19,7 @@ import { useTheme }   from '@context/ThemeContext';
 
 import SearchBar          from '@components/SearchBar';
 import CurrentWeatherCard from '@components/CurrentWeatherCard';
+import WeatherInsight     from '@components/WeatherInsight';
 import ForecastSection    from '@components/ForecastSection';
 import SearchHistory      from '@components/SearchHistory';
 import TemperatureToggle  from '@components/TemperatureToggle';
@@ -187,6 +188,7 @@ export default function Dashboard() {
                 )}
 
                 <CurrentWeatherCard data={current} loading={weatherLoading} />
+                <WeatherInsight     data={current} loading={weatherLoading} />
                 <ForecastSection    data={forecast} loading={weatherLoading} />
               </div>
 

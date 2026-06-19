@@ -217,7 +217,7 @@ VITE_API_BASE_URL=http://localhost:5001
 
 | Light Mode Dashboard | Dark Mode Dashboard |
 |:---:|:---:|
-| <!-- Add screenshot here --> <br> *(Placeholder: Light Mode)* | <!-- Add screenshot here --> <br> *(Placeholder: Dark Mode)* |
+| ![Light Mode](./frontend/public/screenshot-light.png) | ![Dark Mode](./frontend/public/screenshot-dark.png) |
 
 | Search Autocomplete & Skeletons | History & Analytics |
 |:---:|:---:|
