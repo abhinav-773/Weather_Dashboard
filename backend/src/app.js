@@ -24,6 +24,7 @@ app.use(helmet());
 // ─── CORS ────────────────────────────────────────────────────────────────────
 const allowedOrigins = [
   process.env.CLIENT_URL,
+  'https://weather-dashboard-chi-black.vercel.app',
   'http://localhost:5173', // Vite default
   'http://localhost:3000',
 ].filter(Boolean);
