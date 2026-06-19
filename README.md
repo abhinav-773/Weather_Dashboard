@@ -49,7 +49,7 @@ The frontend is a beautifully designed, highly responsive React application util
 
 ```mermaid
 graph LR
-    subgraph Frontend [React Frontend (Vercel)]
+    subgraph Frontend ["React Frontend - Vercel"]
         UI[React UI Components]
         Hooks[Custom Hooks]
         Context[Global Contexts]
@@ -57,7 +57,7 @@ graph LR
         Hooks <--> Context
     end
 
-    subgraph Backend [Node.js / Express Backend (Render)]
+    subgraph Backend ["Node.js / Express Backend - Render"]
         Router[Express Routes]
         Controller[Controllers]
         Service[Weather Service]
@@ -67,11 +67,11 @@ graph LR
         Controller --> Service
     end
 
-    subgraph Database [Neon PostgreSQL]
+    subgraph Database ["Neon PostgreSQL"]
         DB[(Search History)]
     end
 
-    subgraph External [External APIs]
+    subgraph External ["External APIs"]
         OWM[OpenWeatherMap API]
     end
 
