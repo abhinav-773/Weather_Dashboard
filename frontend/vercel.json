@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "https://weather-dashboard-cngp.onrender.com/api/:path*"
+    },
+    {
+      "source": "/health",
+      "destination": "https://weather-dashboard-cngp.onrender.com/health"
+    }
+  ]
+}
