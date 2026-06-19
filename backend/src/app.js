@@ -22,23 +22,9 @@ const app = express();
 app.use(helmet());
 
 // ─── CORS ────────────────────────────────────────────────────────────────────
-const allowedOrigins = [
-  process.env.CLIENT_URL,
-  'https://weather-dashboard-chi-black.vercel.app',
-  'http://localhost:5173', // Vite default
-  'http://localhost:3000',
-].filter(Boolean);
-
 app.use(
   cors({
-    origin: (origin, callback) => {
-      // Allow requests with no origin (e.g., curl, Postman, server-to-server)
-      if (!origin) return callback(null, true);
-      if (allowedOrigins.includes(origin)) {
-        return callback(null, true);
-      }
-      callback(new Error(`CORS policy: Origin ${origin} is not allowed.`));
-    },
+    origin: true, // Reflect the requesting origin — allows all origins
     credentials: true,
     methods: ['GET', 'POST', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
